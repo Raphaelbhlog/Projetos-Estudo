@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Playfair Display", serif;
+}
+
+body {
+    background-color: black;
+    color: #eee;
+}
+
+header {
+    width: 80%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    margin: auto;
+}
+
+header a {
+    color: #eee;
+    margin-right: 40px;
+    font-weight: 300; 
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    margin-top: -50px;
+    overflow: hidden;
+}
+
+.container .list {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.container .list .list-item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.container .list .list-item img {
+    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    filter: brightness(50%);
+    position: absolute;
+}
+
+.container .list .list-item .content {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    padding-right: 30%;
+    width: 80%;
+    color: #eee;
+    text-shadow: 0 5px 10px #0004;
+}
+
+.container .list .list-item .content .title {
+    font-size: 3em;
+    font-weight: 700;
+    line-height: 1.3em; 
+}
+
+.container .list .list-item .content .description {
+    font-size: 1.1em;
+}
+
+
+.container .list .list-item .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 30px;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.container .list .list-item .buttons button {
+    border: none;
+    background-color: white;
+    letter-spacing: 3px;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.container .list .list-item .buttons button:hover {
+    background-color: transparent;
+    border: 1px solid #eee;
+    color: #eee;
+    transition: 0.7s;
+
+}
+
+.container .list .list-item .buttons button:nth-child(2) {
+    background-color: transparent;
+    color: #eee;
+    border: 1px solid;
+}
+
+.container .list .list-item .buttons button:nth-child(2):hover {
+    background-color: #eee;
+    color: black;
+    transition: 0.7s;   
+}
+
+.container .thumb {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    display: flex;
+    gap: 20px;
+}
+
+.container .thumb .thumb-item {
+    width: 135px;
+    height: 200px;
+    position: relative;
+}
+
+.container .thumb .thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    filter: brightness(50%);
+}
+
+.container .thumb .content {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.container .arrows {
+    display: flex;
+    position: absolute;
+    bottom: 120px;
+    left: 125px;
+    width: 300px;
+    align-items: center;
+    gap: 10px;
+}
+
+.container .arrows button {
+    border-radius: 8px;
+    border: none;
+    padding: 10px 15px;
+    background-color: #eee4;
+    color: #eee;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.container .arrows button:hover {
+    background-color: #eee;
+    color: black;
+    transition: 0.6s;
+}
+
+/*aqui entra animação */
+
+
+/*movimento primeira thumb*/
+.container.next .thumb {
+    animation: effectNextThumb 0.5s linear 1 forwards;
+}
+
+.container.next .thumb .thumb-item:nth-last-child(1) {
+    animation: effectlastthumb 0.3s linear 1 forwards;
+}
+
+@keyframes effectNextThumb {
+    from {
+        transform: translateX(150px);
+    }
+}
+
+
+
+@keyframes effectlastthumb {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+}
+
+/* Animação de Textos */
+
+.container .list .list-item:nth-last-child(1) .content .title,
+.container .list .list-item:nth-last-child(1) .content .description,
+.container .list .list-item:nth-last-child(1) .content .buttons {
+
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: conteudos 0.5s 1s linear 1 forwards;
+}
+
+@keyframes conteudos {
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.container .list .list-item:nth-last-child(1) .content .description {
+    animation-delay: 1.7s;
+}
+
+.container .list .list-item:nth-last-child(1) .content .buttons {
+    animation-delay: 2s;
+}
+
+/* Animação das paisagens */
+
+.container.next .list .list-item:nth-last-child(1) img {
+    width: 150px;
+    height: 220px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    border-radius: 30px;
+    animation: transisaodeimagens 0.1s linear 1 forwards;
+
+
+}
+
+@keyframes transisaodeimagens {
+    to {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+
+/* imagem principal voltando */
+
+.container.back .list .list-item:nth-child(1) img{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: esconderimagem 0.5s linear 1 forwards;
+    z-index: 2;
+}
+
+@keyframes esconderimagem {
+    to {
+        width: 135px;
+        height: 200px;
+        border-radius: 10px;
+        left: 50%;
+        bottom: 50px;
+    }
+}
